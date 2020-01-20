@@ -6,6 +6,7 @@
  */
 
 namespace app\commands;
+use app\models\Animals;
 
 use yii\console\Controller;
 use yii\console\ExitCode;
@@ -27,8 +28,7 @@ class HelloController extends Controller
      */
     public function actionIndex($message = 'hello world')
     {
-        echo $message . "\n";
-
+        echo Animals::findById(27)->delete();
         return ExitCode::OK;
     }
 }

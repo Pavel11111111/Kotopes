@@ -24,4 +24,4 @@ $( ".searchbarbuttonclear" ).click(function() {
     })
     return false;
 });
-//проверку get параметра поиска в каталоге искать в filter.js
+//проверку get параметра поиска в каталоге искать в filter.js и удаление строки тоже

@@ -11,7 +11,7 @@ class Filterparam extends \yii\db\ActiveRecord{
 
     public static function getInfo()
     {
-        return self::find()->orderBy(['filternameid' => SORT_ASC])->all();
+        return self::find()->orderBy(['filternameid' => SORT_ASC, 'name'=>SORT_ASC])->all();
     }
 
     public static function  findById($id){

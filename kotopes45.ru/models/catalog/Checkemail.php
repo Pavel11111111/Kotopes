@@ -28,7 +28,7 @@ class Checkemail extends Model
     public function sendEmail($variation)
     {
         return  Yii::$app->mailer->compose()
-            ->setFrom('noreplicate146@gmail.com')
+            ->setFrom(["noreplicate146@gmail.com"=>"Зоомагазин Котопёс"])
             ->setTo('mkotopes.online@yandex.ru')
             ->setSubject('Кнопка "Заказать товар"')
             ->setTextBody('Здарова Серый, тут пользователь хочет заказать товар: ' . $variation->product["name"] . ". Вариация товара: " . $variation->name . ". Номер телефона пользователя:" . $this->number)

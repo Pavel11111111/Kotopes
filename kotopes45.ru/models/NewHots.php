@@ -8,7 +8,7 @@ use yii\web\UploadedFile;
 
 class NewHots extends Model
 {
-    public $id, $gltext, $text, $url, $gltextcolor, $textcolor;
+    public $id, $gltext, $text, $url, $gltextcolor, $textcolor, $oldid;
     /**
      * @var UploadedFile
      */

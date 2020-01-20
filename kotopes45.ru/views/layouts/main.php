@@ -31,6 +31,73 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
+   <div id="InformationBox" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Заголовок модального окна -->
+                <div class="modal-header regheader">
+                    <h2 class="modal-title row reg" style = "width: 90%;padding-left: 1%;font-size:32px;">На сайт добавлено</h2>
+                    <button type="button" class="knopkaimg" data-dismiss="modal" style = "width: 9%;padding-left: 0px;padding-right: 0px;"><img style = "vertical-align:top;" class = "imaga" src="/images/krest.png" alt="закрыть"></button>
+                </div>
+                <!-- Основное содержимое модального окна -->
+                <div class="modal-body row otstup">
+                    <?php 
+                    foreach($this->context->news as $onenews){
+                    ?>
+                        <div style ="width: 100%;text-align:center;font-size:20px;">
+                            <p><?= $onenews->date ?></p>
+                        </div>
+                        <div style = "width: 100%;font-size:20px;">
+                            <ul>
+                            <?php 
+                            $i = 0;
+                            foreach($onenews->informationtextlists as $onetext){
+                            ?>
+                                <?php
+                                if($i != 0 && $onetext->text == null){
+                                ?>
+                                    <li style = "list-style-type: none;">
+                                        <p style = "display: inline;"><?= $onetext->text ?> </p><br><a style = "display: inline;" href = "http://kotopes45.ru/Catalog?search=<?=  $onetext->link  ?>"><?= $onetext->link ?></a>
+                                    </li>
+                                <?php
+                                }else{
+                                ?>
+                                    <li>
+                                        <p style = "display: inline;"><?= $onetext->text ?> </p><br><a style = "display: inline;" href = "http://kotopes45.ru/Catalog?search=<?=  $onetext->link  ?>"><?= $onetext->link ?></a>
+                                    </li>
+                                <?php
+                                }
+                                ?>
+                            <?php
+                            $i++;
+                            }
+                            ?>
+                            </ul>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
+                <!-- Футер модального окна -->
+                <div class="modal-footer">
+                    <div id = "addproductmodalready" style = "display:none;">
+                        <div style ="width: 100%;text-align:center;font-size:20px;">
+                            Спасибо, следите за обновлениями, и возможно, этот товар скоро появится на сайте.
+                        </div>
+                    </div>
+                    <div id = "addproductmodal">
+                        <div style ="width: 100%;text-align:center;font-size:20px;">
+                            Какой товар Вы хотите видеть следующим?    
+                        </div>
+                        <div style ="width: 100%;text-align:center;">
+                            <textarea id = "sendinformationbyproducttext" style = "width: 100%;max-width: 100%;min-width: 100%; height: 70px;min-height:70px;border: 1px solid black;"></textarea>  
+                            <button type = "button" id = "sendinfomationbyproduct" class = 'knopkainput' style = "display:inline-block;margin-top: 13px;">Отправить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div id="SearchModal" class="modal fade">
         <div class="modal-dialog">
@@ -38,7 +105,7 @@ AppAsset::register($this);
                 <!-- Заголовок модального окна -->
                 <div class="modal-header" style = "line-height:8px;">
                     <h2 class="SearchModalText reg"style = "width: 90%;">Поиск по каталогу товаров</h2>
-                    <button type="button" class="knopkaimg" data-dismiss="modal"style="height: 59px;width:9%;margin-top: 7px;"><img class = "imaga" src="/images/krest.png" alt="закрыть"></button>
+                    <button type="button" class="knopkaimg" data-dismiss="modal"style="height: 27px;width:9%;"><img class = "imaga" src="/images/krest.png" alt="закрыть"></button>
                 </div>
                 <!-- Основное содержимое модального окна -->
                 <div class="modal-body row otstup">
@@ -167,12 +234,12 @@ AppAsset::register($this);
                     <div class="row" style = "display: none" id="hidpod">
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="background-color: #F5F6FF; border: solid 1px #ACB3D8; margin-left: 9%; margin-bottom: 30px;">
                         <p style="font-family: Arial,sans-serif;font-size: 18px; font-weight: bold; color: #333333;">Пароль</p><br>
-                        <p style="font-family: Arial,sans-serif;font-size: 16px; color: #333333;">Минимальное количество символов: 8. Максимальное количество символов: 20. Используйте буквы и цифры. Один и тот же символ не должен повторяться более трёх раз.</p>
+                        <p style="font-family: Arial,sans-serif;font-size: 16px; color: #333333;">Минимальное количество символов: 8. Максимальное количество символов: 20. Используйте буквы и цифры. Один и тот же символ не должен повторяться более трёх раз подряд.</p>
                     </div>
                     </div>
                     <?= $form->field($this->context->signup, 'password2')->passwordInput(['placeholder' => 'Подтвердите пароль', 'class'=>'form-control text-left loginform']) ?>
 
-                    <?= $form->field($this->context->signup, 'name')->textInput(['placeholder' => 'Имя', 'class'=>'form-control text-left loginform', 'maxlength'=>50]) ?>
+                    <?= $form->field($this->context->signup, 'name')->textInput(['placeholder' => 'Имя', 'class'=>'form-control text-left loginform', 'maxlength'=>25]) ?>
 
                     <?= $form->field($this->context->signup, 'patronymic')->textInput(['placeholder' => 'Фамилия', 'class'=>'form-control text-left loginform', 'maxlength'=>50]) ?>
 
@@ -376,7 +443,7 @@ AppAsset::register($this);
     NavBar::begin([
         'headerContent' => 
         '<img style = "padding-top:17px;margin-left: 7px;"class = "navbar-toggle-elements htext1 searchIcon" src="/images/lupa.png" caption="Поиск по сайту">
-        <img src="/images/korz.png" style= "padding-top: 16px;margin-left: 14px;width: 30px;height: 42px;" class = "navbar-toggle-elements" alt="Корзина"><div class ="items2 navbar-toggle-elements" id = "items"><p>0</p></div>
+        <img src="/images/korz.png" style= "padding-top: 16px;margin-left: 14px;width: 30px;height: 42px;" class = "korzinabutton navbar-toggle-elements" alt="Корзина"><div class ="items2 navbar-toggle-elements"><p>'.  $this->context->basketvalue  .'</p></div>
         <a style="line-height: 60px;"class = "hizo12 navbar-toggle-elements" href="/HomePage"><img style = "max-height: 62px;max-width: 200px;width:100%;"src="/images/kotopes.png" alt=""></a>',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
@@ -398,9 +465,9 @@ AppAsset::register($this);
             .'</li>'
             .'<div class = "hid2">'
             .'</div>'
-            .'<li class="hizo2 htext1 hid">'
+            .'<li class="hizo2 htext1 hid korzinabutton">'
             . Html::img('/images/korz.png')
-            . '<div class ="items" id = "items"><p>0</p></div>'
+            . '<div class ="items"><p>' . $this->context->basketvalue . '</p></div>'
             .'</li>'
             .'<li class="hizo2 htext1 elem chel hid" id = "chel">',
             Yii::$app->user->isGuest ? (
@@ -417,7 +484,7 @@ AppAsset::register($this);
                     'Выйти',
                     ['class' => 'dropdown-menutext dropdown-menulink btn btn-link']
                     )
-                    . Html::endForm() . '</li><div style ="border-bottom:1px solid #ddd; width:165px;margin:10px auto;"></div><li class = "droplist"><a class = "dropdown-menulink2" href = "">Заказы</a></li><li class = "droplist"><a  class = "dropdown-menulink2" href = "">Профиль</a></li><li class = "droplist" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2" href = "">Избранное</a></li></ul></div>'
+                    . Html::endForm() . '</li><div style ="border-bottom:1px solid #ddd; width:165px;margin:10px auto;"></div><li class = "droplist"><a class = "dropdown-menulink2" href = "">Заказы</a></li><li class = "droplist"><a  class = "dropdown-menulink2" href = "' . Url::toRoute(['account/profile']) . '">Профиль</a></li><li class = "droplist" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2" href = "' . Url::toRoute(['account/favourites']) . '">Избранное</a></li></ul></div>'
                     .'</li>'
                 ) : (
                     Html::img('/images/chel2.png', ['alt' => 'Выход'])
@@ -427,7 +494,7 @@ AppAsset::register($this);
                         'Выйти',
                         ['class' => 'dropdown-menutext dropdown-menulink btn btn-link']
                     )
-                    . Html::endForm() . '</li><div style ="border-bottom:1px solid #ddd; width:165px;margin:10px auto;"></div><li class = "droplist"><a class = "dropdown-menulink2" href = "">Заказы</a></li><li class = "droplist"><a  class = "dropdown-menulink2" href = "">Профиль</a></li><li class = "droplist" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2" href = "">Избранное</a></li></ul></div>'
+                    . Html::endForm() . '</li><div style ="border-bottom:1px solid #ddd; width:165px;margin:10px auto;"></div><li class = "droplist"><a class = "dropdown-menulink2" href = "">Заказы</a></li><li class = "droplist"><a  class = "dropdown-menulink2" href = "' . Url::toRoute(['account/profile']) . '">Профиль</a></li><li class = "droplist" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2" href = "' . Url::toRoute(['account/favourites']) . '">Избранное</a></li></ul></div>'
                     .'</li>'
                     )
 
@@ -450,7 +517,7 @@ AppAsset::register($this);
                     'Выйти',
                     ['class' => 'dropdown-menutext dropdown-menulink btn btn-link dropdown-menu-hidden-text', 'style' => 'height: 100%; width: 100%;']
                     )
-                    . Html::endForm() . '</li><li class = "htext1"><div class = "dropdown-menu-hidden-text" style ="margin: 0 auto;border-bottom:1px solid #ddd; width:165px;height: 3px;"></div></li><li class = "htext1"><a class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Заказы</a></li><li class = "htext1"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Профиль</a></li><li class = "htext1" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Избранное</a></li>'
+                    . Html::endForm() . '</li><li class = "htext1"><div class = "dropdown-menu-hidden-text" style ="margin: 0 auto;border-bottom:1px solid #ddd; width:165px;height: 3px;"></div></li><li class = "htext1"><a class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Заказы</a></li><li class = "htext1"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "' . Url::toRoute(['account/profile']) . '">Профиль</a></li><li class = "htext1" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "' . Url::toRoute(['account/favourites']) . '">Избранное</a></li>'
                     .'</li>'
                 ) : (
                     '<li style = "height: 20px;"><div class = "dropdown-menu-hidden-text" style ="margin: 0 auto;border-bottom:1px solid #ddd; width:165px;height: 3px;"></div></li><li class="htext1 htext2"><p class = "dropdown-menu-hidden-text">Здравствуйте ' . Yii::$app->user->identity->name . '</p></li>'
@@ -460,7 +527,7 @@ AppAsset::register($this);
                         'Выйти',
                         ['class' => 'dropdown-menutext dropdown-menulink btn btn-link dropdown-menu-hidden-text', 'style' => 'height: 100%; width: 100%;']
                     )
-                    . Html::endForm() . '</li><li style = "height: 20px;"><div class = "dropdown-menu-hidden-text" style ="margin: 0 auto;border-bottom:1px solid #ddd; width:165px;height: 3px;"></div></li><li class = "htext1"><a class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Заказы</a></li><li class = "htext1"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Профиль</a></li><li class = "htext1" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Избранное</a></li>'
+                    . Html::endForm() . '</li><li style = "height: 20px;"><div class = "dropdown-menu-hidden-text" style ="margin: 0 auto;border-bottom:1px solid #ddd; width:165px;height: 3px;"></div></li><li class = "htext1"><a class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "">Заказы</a></li><li class = "htext1"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "' . Url::toRoute(['account/profile']) . '">Профиль</a></li><li class = "htext1" style="margin-bottom: 10px;"><a  class = "dropdown-menulink2 dropdown-menu-hidden-text" href = "' . Url::toRoute(['account/favourites']) . '">Избранное</a></li>'
                     .'</li>'
                     )
 
@@ -483,7 +550,7 @@ AppAsset::register($this);
     <div class="container-fluid">
         <div class="footerblock col-lg-offset-1 col-lg-10  col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
             <p class="companyname pull-left">&copy; Котопёс <?= date('Y') ?></p>
-            <div class="textfooter"><p class = "numberin">Номер для связи:</p> <p class = "number">8-992-425-23-48</p><a target="_blank" href="viber://chat?number=%2B79128365270"><img alt="viber" class = "imgfootersocial" src="/images/viber.png"/></a><a target="_blank" href="https://wa.me/79128365270"><img class = "imgfootersocial2" src="/images/whatsapp.png"/></a></div>
+            <div class="textfooter"><p class = "numberin">По всем вопросам:</p> <p class = "number">8-992-425-23-48</p><a target="_blank" href="viber://chat?number=%2B79128365270"><img alt="viber" class = "imgfootersocial" src="/images/viber.png"/></a><a target="_blank" href="https://wa.me/79128365270"><img class = "imgfootersocial2" src="/images/whatsapp.png"/></a></div>
             <p class="pull-right textf"><a href="" class = "backtotop">К началу &#8657;</a></p>
         </div>
     </div>

@@ -118,17 +118,21 @@ class Signup extends Model
     }
 
     public function signup(){
-        $user = new User;
-        $user->email = $this->email;
-        $user->number = $this->number;
-        $user->setPassword($this->password);
-        $user->name = $this->name;
-        $user->patronymic = $this->patronymic;
-        $user->date = $this->date3 . '-' . $this->date2 . '-' . $this->date;
-        $random = Yii::$app->security->generateRandomString();
-        $user->validate = $random;
-        $user->save();
-        return $random;
+        if($this->errors == null){
+            $user = new User;
+            $user->email = $this->email;
+            $user->number = $this->number;
+            $user->setPassword($this->password);
+            $user->name = $this->name;
+            $user->patronymic = $this->patronymic;
+            $user->date = $this->date3 . '-' . $this->date2 . '-' . $this->date;
+            $random = Yii::$app->security->generateRandomString();
+            $user->validate = $random;
+            $user->save();
+            return $random;
+        }else{
+            return 'error';
+        }
     }
 
     public function getUser(){

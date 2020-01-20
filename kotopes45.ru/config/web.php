@@ -12,6 +12,12 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'session' => [
+            'class' => 'yii\web\Session',
+            'cookieParams' => ['lifetime' => 3600*24*30*12],
+            'timeout' => 3600*24*30*12,
+            'useCookies' => true,
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager'
         ],
@@ -65,6 +71,10 @@ $config = [
                 'OrderProduct' => 'site/order',
                 'Catalog' => 'site/catalog',
                 'YouBanned' => 'ban/index',
+                'Cart' => 'site/cart',
+                'OrderProducts' => 'site/makeorder',
+                'MyProfile' => 'account/profile',
+                'Favourites' => 'account/favourites',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
@@ -85,8 +95,7 @@ $config = [
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*']
     ];
 }*/
 

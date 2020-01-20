@@ -12,6 +12,19 @@ use yii\helpers\Url;
 
 
 <div class="site-catalog">
+    <div id="productinbasket" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Основное содержимое модального окна -->
+                <div class="modal-body row otstup" style = "text-align:center;">
+                    <img class = "productinbasketimage" src="/images/galka2.jpg">
+                    <p class = "productinbaskettext">Товар добавлен</p>
+                    <button type = "submit" class = 'knopkacallme productinbasketbutton korzinabutton'>Оформить заказ</button>
+                    <p class = "buyclick" data-dismiss="modal" style = "margin-bottom:43px;">Продолжить покупки</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="callme" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -22,7 +35,7 @@ use yii\helpers\Url;
                 </div>
                 <!-- Основное содержимое модального окна -->
                 <div class="modal-body row otstup">
-                    <p class = "callmetext2">Этот товар в данный момент отсутствует на складе. Укажите свое имя и номер телефона, чтобы наш оператор мог связаться с Вами, уточнить сроки поставки и стоимость этого товара.</p>
+                    <p class = "callmetext2">Этот товар в данный момент отсутствует на складе. Укажите свое имя и номер телефона, чтобы наш оператор мог связаться с Вами и обсудить детали доставки данного товара.</p>
                     <div class = "otstupModalIdenti">
                         <?php $form = ActiveForm::begin([
                             'id' => 'callme-form',
@@ -36,8 +49,8 @@ use yii\helpers\Url;
                                 'labelOptions' => ['class' => 'col-lg-1 control-label'],
                             ],
                         ]); ?>
-                        <?= $form->field($callme, 'number')->textInput(['value' => Yii::$app->user->identity->number ,'placeholder' => 'Ваш номер телефона', 'class'=>'form-control text-left ']) ?>
                         <?= $form->field($callme, 'clientname')->textInput(['value' => $username,'placeholder' => 'ФИО', 'class'=>'form-control text-left ']) ?>
+                        <?= $form->field($callme, 'number')->textInput(['value' => Yii::$app->user->identity->number ,'placeholder' => 'Ваш номер телефона', 'class'=>'form-control text-left ']) ?>
                         <?= $form->field($callme, 'variationid')->hiddenInput(['class' => 'hiddenvariationid']) ?>
                         <div class = "row">
                             <div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -104,6 +117,7 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
+    <input type="button" class="buttontop" value="К началу">
     <div class="otstupc">
         <div class="catalogoffset">
             <div class="breadcrumbc"><a href="" class="linkc allproduct">Все Продукты</a><div style="display:inline;" class="allproductclean"></div><div class="typeproductclean" style="display:inline;"></div></div>
@@ -188,11 +202,11 @@ use yii\helpers\Url;
                         <div data-text="<?php echo $filtername->name ?>">
                             <?php }
                         else{ ?>
-                            <div data-id="1" class="list turn">
+                            <div data-id="1" class="list turn otherlistturn">
                                 <p class="filtertextc"><?php echo $filtername->name ?></p><img
-                                        src="/images/iconplus.png" class="filterimgc"/>
+                                        src="/images/iconplus.png" class="filterimgc otherfilterimgc"/>
                             </div>
-                            <div style="display: none;" data-text="<?php echo $filtername->name ?>">
+                            <div style="display: none;" class = "otherfilterslist" data-text="<?php echo $filtername->name ?>">
                                 <?php
                                 }
                             foreach ($filterparams as $filterparam){ ?>
@@ -214,10 +228,11 @@ use yii\helpers\Url;
                     </div>
                     <div class = "searchbarmargin" style = "display: none;">
                     <div class = "searchbar">
-                        <div class = "searchbar2">
+                        <div class = "searchbar2" style = "padding-right: 103px;">
                             <form id="search-form"  action="site/searchproducts" method="post">
                                 <input maxlength = "100" autocomplete="off" name="Search[text]" class = "searchinput" placeholder="Pro Plan Adult Feline с курицей" type="text">
                                 <button type="submit" class="seachicon"></button>
+                                <button type="button" class="search-delete-icon"><img style = "max-width: 26px; max-height: 26px;" src="/images/krest.png" alt="закрыть"></button>
                             </form>
                         </div>
                         <div class = "searchbarhistory" style = "height: 151px;display:none;">

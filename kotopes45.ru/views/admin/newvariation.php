@@ -20,6 +20,8 @@ $this->title = 'Админка';
                 <input type="text" name="Product[0][sale]" class="form-control text-left salevariation">
                 <p class = "text-center banuser">Количество на складе</p>
                 <input type="text" name="Product[0][count]" class="form-control text-left countvariation">
+                 <p class = "text-center banuser">Место в списке</p>
+                <input type="text" name="Product[0][place]" class="form-control text-left placevariation">
             </div>
         </div>
 

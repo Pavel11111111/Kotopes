@@ -1,15 +1,17 @@
 html,
 body {
     /*cursor:url('../images/Pawanim.ani'), auto;*/
-    padding-right:0px !important;
+    overflow-x: hidden;
     color: #000000 !important;
     scroll-behavior: smooth;
-    height: 100%;
-}
-
-.wrap {
     min-height: 100%;
-    height: auto;
+    width: 100%;
+    padding: 0 !important;
+}
+.wrap {
+    overflow: hidden;
+    min-height: 100vh;
+    height: auto !important;
     margin: 0 auto -60px;
     padding: 0 0 60px;
 }
@@ -196,9 +198,7 @@ a.desc:after {
 }
 
 .nav > li > p:hover{
-    color: #0b5add;
     background-color:white;
-    border-bottom: 2px solid #0b5add;
 }
 
 .hizo2:hover{
@@ -251,6 +251,11 @@ a.desc:after {
     bottom:33px;
     left: 25px;
 }
+
+.korzinabutton{
+    cursor: pointer;
+}
+
 .items > p{
     font-family:'SamsungOne 700', arial;
     font-size: 10px;
@@ -260,6 +265,7 @@ a.desc:after {
     top:1.5px;
 }
 .items2{
+    z-index: 999;
     background-color: red;
     border-radius: 300px;
     width:15px;
@@ -282,6 +288,9 @@ a.desc:after {
 }
 
 /*glavnaya*/
+.nohovedecoration:focus, .nohovedecoration:hover{
+    text-decoration: none;
+}
 .searchbar{
     font-family: 'SamsungOne 400', arial;
 }
@@ -346,7 +355,7 @@ a.desc:after {
     display: block;
     width: 100%;
     height: 44px;
-    padding: 0 29px 2px;
+    padding-bottom: 2px;
     border: 0;
     font-size: 20px;
     font-weight: bold;
@@ -405,9 +414,10 @@ a.desc:after {
 
 .t  > p{
     color: white;
-    font-family:'SamsungOne 400', arial;
-    font-weight: 400;
-    font-size: 16px;
+    font-family: arial;
+    font-weight: bolder;
+    font-size: 23px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .knop{
@@ -482,9 +492,7 @@ a.desc:after {
     height: 100%;
 }
 
-.backgroundbox:hover{
-    background: rgba(0, 0, 0, 0.7);
-}
+
 .imgianimals2{
     display: inline-block;
     width:23%;
@@ -880,6 +888,10 @@ a.desc:after {
     margin-bottom: 20px;
 }
 
+.field-makeorderform-paymenttype{
+    margin-bottom: 0px;
+}
+
 .modaltext{
     text-align: center;
     font-family: Arial, sans-serif;
@@ -1015,9 +1027,11 @@ a.desc:after {
 }
 
 .loading-bar{
+    width: 77%;
+    float:right;
+    display:inline-block;
     text-align: center;
     font-size: 19px;
-    padding-left: 17%;
 }
 
 .animalsimg{
@@ -1038,6 +1052,7 @@ a.desc:after {
 }
 
 .carouseloneitem:hover .backgroundbox {
+    background: rgba(0, 0, 0, 0.7);
     display: block;
 }
 
@@ -1058,12 +1073,51 @@ a.desc:after {
     height:100%;
     width:100%;
 }
+.popup_bg_in_elem {
+    background:rgba(0,0,0,0.5);
+    position:relative;
+    z-index:1;
+    height:100%;
+    width:100%;
+}
 
 
 .popup_img {
     margin: auto;
     position: fixed;
     top: 0; left: 0; bottom: 0; right: 0;
+    z-index:2;
+    max-height:94%;
+    max-width:94%;
+}
+
+.productinbasketimage{
+    width: 64px;
+    height: 64px;
+    display: block;
+    margin: 17px auto;
+}
+
+.productinbasketbutton{
+    display: block;
+    margin: 0 auto;
+    min-width: 248px !important;
+    
+}
+
+.productinbaskettext{
+    margin: 23px;
+    font-family: "SamsungOne 600",'Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    letter-spacing: -.2px;
+    
+}
+
+.popup_img_in_elem {
+    margin: auto;
+    position: relative;
+    top: -504px; left: 0; bottom: 0; right: 0;
     z-index:2;
     max-height:94%;
     max-width:94%;
@@ -1121,6 +1175,7 @@ a.desc:after {
 }
 
 .feedform{
+    border-radius: 0px;
     min-height: 120px;
     border: 1px solid #000000;
     font-family: "SamsungOne 400", Arial, sans-serif;
@@ -1162,6 +1217,7 @@ a.desc:after {
 }
 
 .orderform{
+    border-radius: 0px;
     border: 1px solid #000000;
     font-family: "SamsungOne 400", Arial, sans-serif;
     font-size: 1em;
@@ -1169,6 +1225,66 @@ a.desc:after {
     background-color: #ffffff;
     max-width: 1000px;
     resize: none;
+}
+
+.makeorderdatetimebuttonclose{
+    background: url('../images/krest.png'), rgba(255,255,255,0.3) no-repeat !important;
+    background-blend-mode: color !important;
+    background-size: 100% 100% !important;
+}
+
+.makeorderdatetimebuttonclose:hover{
+    letter-spacing: 1px !important;
+}
+.makeorderdatetimebutton{
+    background-color: #fff;
+  height:33px;
+  border:1px solid #000;
+  font-family: 'Dosis', sans;
+  font-size: 18px;
+  font-weight:200;
+  color:#000;
+  text-transform:uppercase;
+  text-decoration:none;
+  text-align:center;
+  opacity:.8;
+  letter-spacing: 1px;
+    -webkit-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+   -moz-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+     -o-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+        transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+        margin: 10px 5px;
+}
+
+.makeorderdatetimebuttonselected{
+    background: #d5d4d8;
+}
+
+.makeorderdatetimebutton:hover{
+  height:33px;
+  border:1px solid teal;
+  opacity:1;
+  letter-spacing: 4px;
+  -webkit-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+   -moz-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+     -o-transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+        transition: all 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750); /* linear */
+}
+
+.makeorderdatebutton{
+    width:100%;
+    display:block;
+}
+
+.makeordertimebutton{
+    display:inline;
+}
+
+.makeordertimesblock{
+    flex-wrap: wrap;
+    display:flex;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .textfooter{
@@ -1265,9 +1381,9 @@ a.desc:after {
     cursor: pointer;
 }
 .SearchModalText{
-    font-size: 38px;
+    padding-left: 13px;
     margin-bottom: 17px;
-    text-align: center;
+    text-align: left;
     font-family:'SamsungSharp', arial;
     font-weight: bold;
     color: #000;
@@ -1276,7 +1392,7 @@ a.desc:after {
 
 .filterblockc{
     display: block;
-    z-index: 1;
+    z-index: 1000;
     background-color: white;
     float: left;
     min-width: 185px;
@@ -1318,8 +1434,12 @@ a.desc:after {
 .product{
     padding-left: 0px;
     padding-right: 0px;
-    border: 1px solid #c9c9c9;
+    border: 1px solid #e7e7e8;
     text-align: center;
+}
+
+.nav > li > a:focus {
+    background-color: white;
 }
 
 .productimage{
@@ -1331,15 +1451,25 @@ a.desc:after {
 }
 
 .productname{
-    height: 51px;
+    position: relative; 
+    overflow: hidden;
+    line-height: 1.2em;
+    text-overflow: ellipsis;
+    height: 67px;
     text-align: center;
     font-family: "SamsungOne 700", Arial,sans-serif;
     margin-top: 6px;
     font-size: 18px;
-    max-height: 52px;
+    max-height: 67px;
     margin-bottom: 11px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* количество строк */
+    -webkit-box-orient: vertical;
 }
 .productshortdescription{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 12px;
     font-family: "SamsungOne 600", Arial, sans-serif;
     text-align: center;
@@ -1348,7 +1478,7 @@ a.desc:after {
 .priceskid{
     margin: 0 auto;
     margin-top: 4px;
-    font-family: "SamsungOne600",Arial,sans-serif;
+    font-family: "SamsungOne 600",Arial,sans-serif;
     font-size: 12px;
     color: #666;
     display: inline-block;
@@ -1447,6 +1577,7 @@ a.desc:after {
 }
 
 .heart{
+    cursor: pointer;
     position:absolute;
     top:2%;
     left:86%;
@@ -1500,9 +1631,15 @@ a.desc:after {
 .buttoncountproduct{
     border: 1px solid #000;
     border-radius: 50%;
-    height: 32.8px;
-    width: 32px;
+    height: 30px;
+    width: 30px;
+    padding: 0px;
     background-color: transparent;
+    position: relative;
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .imgcountproduct{
@@ -1642,27 +1779,30 @@ select:focus {
     color: #1428a0;
     font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
     font-size: 16px;
+    width:100%;
     line-height: 54px;
     margin-bottom: 20px;
     text-align: center;
 }
 
 @media (max-width: 1430px){
-    .navbar-left{
-        padding-left: 0%;
-        padding-right: 0%;
-    }
     .catalogoffset{
         margin-left: 0%;
         width: 100%;
     }
 }
 
-@media (max-width: 1300px){
+@media (max-width: 1500px){
+    .navbar-left{
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+}
+/*@media (max-width: 1300px){
     .nav{
         width: 100% !important;
     }
-}
+}*/
 
 @media screen and (max-width: 1150px) {
     .car{
@@ -1769,8 +1909,8 @@ select:focus {
 
     .navbar-nav{
         margin: 7.5px 0px;
+        margin-top: 0px;
     }
-
     .navbar-header{
         margin:0 0 !important;
         width: 100%;
@@ -1899,7 +2039,7 @@ table th {
     }
     .number{
         font-size: 13px;
-        position: relaitve;
+        position: relative;
         bottom: 0px;
     }
     .imgfootersocial2{
@@ -2023,6 +2163,17 @@ table th {
     }
 }
 @media (max-width: 590px){
+    .address-form-actions{
+        display: flex !important;
+        align-items: center;
+        flex-direction: column;
+    }
+    .profile-header > h1 {
+        font-size: 30px !important;
+    }
+    .address-cancel{
+        margin-right: 0px !important;
+    }
     .linki2{
         font-size: 19px;
     }
@@ -2048,7 +2199,7 @@ table th {
 }
 @media (max-width: 855px){
     .loading-bar{
-        padding-left: 0;
+        width: 100%;
     }
     .catalogoffset{
         padding-right: 0px;
@@ -2060,7 +2211,7 @@ table th {
     .sortc2{
         display:block;
         position: relative;
-        bottom: 40px;
+        bottom: 34px;
     }
     .breadcrumbc{
         display: block;
@@ -2072,7 +2223,7 @@ table th {
         top: 42px;
         position:absolute;
         display: none;
-        width: 225px;
+        width: 100%;
         padding-right: 40px;
     }
     .productblockc{
@@ -2084,3 +2235,994 @@ table th {
         float: left;
     }
 }
+/*
+Корзина
+*/
+.cart-left-content{
+    padding-right: 70px;
+    padding-top: 72px;
+}
+.cart-title{
+    font-size: 40px;
+    margin-bottom: 48px;
+    font-family:'SamsungOne 800',"Open Sans",Helvetica,Arial,sans-serif;
+}
+.cart-ul-product{
+    list-style: none;
+    padding-left: 0px;
+}
+.cart-li-product{
+    padding: 24px 0;
+    border-top: 1px solid #e7e7e8;
+    margin-left: -10px;
+    margin-right: -10px;
+    position: relative;
+}
+.cart-image-product{
+    display: inline-block;
+    width: 166px;
+    left: 6px;
+    height: 166px;
+    position: absolute;
+}
+.cart-image-size-product{
+    width: 100%;
+    height: 100%;
+}
+.cart-paddingimage-product{
+    padding-left: 147px;
+}
+.cart-details-product{
+    display: inline-block;
+    width: 40%;
+    padding-right: 0;
+    margin-right: 0;
+}
+.cart-name-product{
+    display: inline-block;
+}
+.cart-name-product-h3{
+    margin-left: 29px;
+    margin-top: 5px;
+    font-family: 'SamsungOne 800',"Open Sans",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}
+.cart-product-price-details{
+    padding-left: 152px;
+}
+.cart-item-actions-products{
+    position: relative;
+    top: -8px;
+    display: inline-block;
+    vertical-align: top;
+    width: 59%;
+    text-align: right;
+}
+.item-price{
+    margin-bottom: 15px;
+    width: 100%;
+    position: relative;
+    top: 8px;
+    margin-top: 0;
+    font-size: 18px;
+    display: block;
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    text-align: right;
+}
+.item-price-discount{
+    font-size: 14px;
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    color: #008075;
+    text-align: right;
+}
+.item-price-discount-text{
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+    text-align: right;
+}
+.cart-remove-item{
+    line-height: 24px;
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+    text-decoration: underline;
+    letter-spacing: 1px;
+    display: inline-block;
+    cursor: pointer;
+}
+.cart-right-content{
+    padding-left: 30px;
+    padding-top: 72px;
+    background-color: #f8f8f8;
+    min-height: 100%;
+}
+.cart-summary-text{
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    line-height: 32px;
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+.cart-payment-options ul{
+    border-left: 4px solid #e7e7e8;
+    margin-bottom: 16px;
+    padding-left: 12px;
+}
+.cart-payment-options ul li:first-child{
+    padding-left: 0;
+    background-image: none;
+}
+.cart-payment-options ul li{
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    display: block;
+    list-style: none;
+    padding-left: 20px;
+    position: relative;
+    vertical-align: middle;
+    background-image: url('data:image/svg+xml;charset%3DUS-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20stroke%3D%22%23000%22%20stroke-linecap%3D%22square%22%20stroke-width%3D%222%22%20d%3D%22M4%209.1l3%202.4L11.5%204%22%2F%3E%3C%2Fsvg%3E');
+}
+.cart-summary-discount{
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+}
+.cart-summary-price{
+     margin-top: 7px;
+    font-size: 16px;
+    font-family: "SamsungOne 800", 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+.linkbacktoshop{
+    height: 40px;
+    line-height: 40px;
+    display: table-cell;
+    text-decoration: none;
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    letter-spacing: 1.2px;
+}
+.linkbacktoshop:hover{
+    text-decoration: none;
+    color: #1F00EE;
+}
+.linkbacktoshopimage{
+    background-image: url('data:image/svg+xml;charset%3DUS-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M10%2012L6%208l4-4%22%20stroke-width%3D%222%22%20stroke%3D%22%23000%22%20fill%3D%22none%22%20stroke-linecap%3D%22square%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: 16px;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    bottom: 1.5px;
+}
+.linkbacktoshop2{
+    padding: 24px 0;
+    line-height: 32px;
+}
+.linkbacktoshop2text{
+    text-align: left;
+    font-family: "SamsungOne 800", 'Open Sans', Helvetica, Arial, sans-serif;
+    display: inline;
+    color: #000;
+    font-size: 12px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    text-decoration: underline;
+}
+.linkbacktoshop2text:hover{
+    cursor: pointer;
+    color: #1F00EE;
+}
+.cart-row{
+    display: flex;
+}
+.rightboostrap{
+    min-height: 87vh;
+    padding: 0px;
+}
+.rightlink{
+    text-align: right;
+}
+.cart-custom-margin{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+/*
+Каталог вверх
+*/
+input.buttontop {
+    position: fixed;
+    display: inline-block;
+    font-family: Arial,Helvetica,FreeSans,"Liberation Sans","Nimbus Sans L",sans-serif;
+    font-size: 1.0em;
+    font-weight: 700;
+    color: rgb(245,245,245);
+    text-shadow: 0 -1px rgba(0,0,0,.1);
+    text-decoration: none;
+    user-select: none;
+    border-radius: 10px 10px 0 0;
+    padding: .3em 1em;
+    outline: none;
+    border: 1px solid #e1e1e1;
+    background: #1428a0;
+    bottom: 23%;
+    left: -32px;
+    z-index: 99;
+    transform:rotate(90deg);
+}
+input.buttontop:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 1475px) and (min-width: 1123px){
+    .cart-custom-width{
+        margin-left: 10%;
+        width: 56%;
+    }
+    
+     .rightboostrap{
+        width: 44%;
+    }
+}
+@media (max-width: 1123px) and (min-width: 992px){
+    .cart-right-auto-width{
+        width: 89%;
+    }
+    .cart-custom-margin{
+        margin-left: 0px;
+    }
+    .cart-custom-width{
+        margin-left: 0%;
+        width: 65%;
+    }
+    .rightboostrap{
+        width: 35%;
+    }
+}
+@media (max-width: 992px){
+    .cart-custom-margin{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .cart-row{
+        display: block;
+    }
+    .cart-custom-width{
+        z-index: 1;
+    }
+    .cart-li-product{
+        margin: 0;
+    }
+    .rightboostrap{
+        min-height: auto;
+        display: inline-block;
+        width: 100%;
+    }
+    .cart-left-content{
+        padding: 0;
+    }
+    .cart-right-content{
+        padding-top: 0;
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}
+@media (max-width: 600px){
+    .cart-item-actions-products{
+        display:block;
+        width: 98%;
+    }
+    .cart-details-product{
+        width: 100%;
+    }
+    .cart-padding-adaptive{
+        padding-top: 5px;
+    }
+    .cart-image-product{
+        width: 100px;
+        height: 100px;
+    }
+    .cart-paddingimage-product{
+        padding-left: 100px;
+    }
+    .cart-image-product{
+        left:15px;
+    }
+    .cart-name-product-h3{
+        margin-left: 14px;
+    }
+    .cart-product-price-details{
+        padding-left: 123px;
+    }
+}
+@media (max-width: 471px){
+    .rightlink{
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/*
+MAKEORDER
+ */
+
+.headline{
+    margin: 16px 0;
+    font-family: "SamsungOne 800", 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+.makeorderformtext{
+    font-size: 16px;
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+.makeorderforminput{
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background: #f8f8f8;
+    border: 1px solid #d9d9d9;
+    color: #000;
+    padding: 0 8px;
+    height: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.makeorderforminput:hover{
+    border: 1px solid #000;
+}
+.makeorderforminputaddres{
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.makeorderfinalbutton{
+    width: 100%;
+    background-color: green;
+    font-family: "SamsungOne 800", 'Open Sans', Helvetica, Arial, sans-serif;
+    color: white;
+    height: 40px;
+    border-radius: 40px;
+    border-color: green;
+    margin-top: 30px;
+    letter-spacing: 2px;
+}
+
+.search-delete-icon{
+    position: absolute;
+    right: 64px;
+    top: 9px;
+    background-color: white;
+    border: 0px;
+}
+
+/*
+пользовательские фичи
+ */
+
+.account-layout{
+    text-align: center;
+    width: 100%;
+    left: 0;
+    background: #f8f8f8;
+}
+
+.account-layout-center-container{
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.account-layout-ul{
+    display: flex;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.account-layout-active-link{
+    background-color: #fff;
+}
+
+.account-layout-link{
+    width: 340px;
+    text-align: center;
+    font-family: "SamsungOne 700",'Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+    padding: 12px 25px;
+    display: block;
+    position: relative;
+}
+
+.account-layout-link > a{
+    color: #000;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 0;
+    border-radius: 0;
+    position: relative;
+    display:block;
+}
+
+.account-layout-link > a:hover{
+    text-decoration: none;
+}
+.account-profile-main-container{
+    font-family: "SamsungOne 600",'Open Sans',Helvetica,Arial,sans-serif;
+}
+
+.profile-container{
+    max-width: 570px;
+    padding: 0 30px;
+    margin: 0 auto;
+}
+
+.profile-header{
+    margin-top: 88px;
+    margin-bottom: 32px;
+}
+
+.profile-header > h1{
+    font-family: 'SamsungOne 800','Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 40px;
+    line-height: 1.4;
+    word-break: break-all;
+}
+
+.profile-address{
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e7e7e8;
+}
+
+.profile-address-header{
+    margin: 0 0 18px;
+    float: none;
+    position: relative;
+    width: 100%;
+    display: block;
+    height: 25px;
+}
+
+.profile-address-header-title{
+    font-size: 20px;
+    line-height: 1em;
+    letter-spacing: -.2px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.profile-address-header-action{
+    padding: 1px 7px 2px;
+    color: #000;
+    background: 0 0;
+    border: 0;
+    font-family: 'SamsungOne 800','Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    float: right;
+    text-decoration: underline;
+    cursor: pointer;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.profile-address-header-action:hover{
+    color: #000;
+}
+
+.profile-address-header-action:visited{
+    color: #000;
+}
+
+.profile-address-list {
+    float: none;
+    width: auto;
+    position: relative;
+}
+
+.profile-address-detail{
+    padding: 16px 22px;
+    float: none;
+    width: auto;
+    position: relative;
+    background: #f8f8f8;
+    margin: 0 0 8px;
+    border: 1px solid #f8f8f8;
+}
+
+.profile-address-detail-completed{
+    border: 1px solid #d9d9d9 !important;
+    border-left: 2px solid #000 !important;
+}
+
+.profile-address-information{
+    overflow-wrap: break-word;
+    line-height: 1.7;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    word-break: break-word;
+    font-size: 14px;
+    max-width: 47%;
+}
+
+.profile-address-actions{
+    position: absolute;
+    font-size: 12px;
+    font-family: "SamsungOne 600",'Open Sans',Helvetica,Arial,sans-serif;
+    line-height: 2;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-align: right;
+    cursor: pointer;
+    right: 22px;
+    top: 19px;
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    max-width: 53%;
+}
+
+.profile-address-actions > li{
+    float: right;
+}
+
+.profile-address-actions > li > a{
+    font-family: "SamsungOne 800",'Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #000;
+}
+
+.profile-address-actions > li{
+    margin-top: 10px;
+}
+
+.profile-address-actions > li > a:hover{
+    color: #000;
+}
+
+.profile-address-actions > li > a:first-child{
+    margin-right: 10px;
+}
+.address-form{
+    padding: 10px 0;
+}
+
+.address-form-actions{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 24px;
+}
+
+
+.address-cancel{
+    margin-bottom: 0;
+    width: auto;
+    display: block;
+    float: left;
+    margin-right: 68px;
+    border: 0;
+    height: 48px;
+    line-height: 48px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    background: #fff;
+    font-family: 'SamsungOne 800','Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #000;
+    cursor: pointer;
+}
+
+.address-cancel:hover{
+    color: black;
+}
+
+.button-disabled{
+    color: #666 !important;
+    border-color: #666 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    opacity: .65 !important;
+    box-shadow: none !important;
+}
+
+.add-address-button{
+    background-color: #fff;
+    -webkit-transition: background-color .3s ease,border-color .3s ease;
+    width: 270px;
+    display: block;
+    float: right;
+    padding: 0 20px;
+    line-height: 44px;
+    height: 44px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    border: 1px solid #000;
+    border-radius: 24px;
+    text-transform: uppercase;
+    font-family: "SamsungOne 800",'Open Sans',Helvetica,Arial,sans-serif;
+    text-align: center;
+}
+
+.add-address-button:hover{
+    border: 1px solid #0077c8;
+    color: white;
+    background-color: #0077c8;
+}
+
+@media (min-width: 988px){
+    .account-layout {
+        height: 48px;
+    }
+}
+
+@media (max-width: 988px){
+    .account-layout-link{
+        width: 200px;
+    }
+}
+
+@media (max-width: 600px){
+    .account-layout-link{
+        width: 100%;
+    }
+    .account-layout-center-container{
+        display:block;
+    }
+    .account-layout-ul{
+        flex-wrap: wrap;
+    }
+    
+    .orderandfeedbackimage{
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 330px){
+    .imgfootersocial2{
+        margin-left: 7px;
+    }
+    .imgfootersocial{
+        margin-left: 7px;
+    }
+}
+/*
+add
+*/
+
+.countproducterrorblock{
+    display:none;
+}
+
+.inputcounterrorblock{
+    display:none;
+    max-width: 140px;
+    color: red;
+}
+
+.orderandfeedbackimage{
+    display:block;
+    margin:0 auto;
+    width: 60%;
+    border-radius: 41%;
+}
+
+.orderandfeedbacklabel{
+    color: #7f7f7f;
+    margin-bottom: 0.5em;
+    display: block;
+    font-family:'SamsungOne 400', arial, sans-serif;
+}
+
+.orderandfeedbackremark{
+    font-size: 0.8em;
+    color: #7f7f7f;
+    text-align: center;
+    margin-top: 2em;
+}
+
+.makeordershortproduct{
+    width: 100%;
+    display: inline-block;
+    padding: 16px 0;
+    border-bottom: 1px solid #e7e7e8;
+}
+
+.makeorder-image-size-product{
+    height: 48px;
+    width: 48px;
+}
+
+.makeordernameproduct{
+    font-size: 14px;
+    font-family: 'SamsungOne 600','Open Sans',Helvetica,Arial,sans-serif;
+    line-height: 1.43;
+}
+
+.makeorderattributesproduct{
+    font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.makeorderpriceproduct{
+    font-size: 14px;
+    font-family: 'SamsungOne 600','Open Sans',Helvetica,Arial,sans-serif;
+    line-height: 1.43;
+    text-align: right;
+}
+
+.makeorder-summary-text-link{
+    display: inline-block;
+    font-size: 12px;
+    font-family: 'SamsungOne 800','Open Sans',Helvetica,Arial,sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin-top: 0px;
+    margin-bottom: 16px;
+    line-height: 32px;
+    color: #000;
+}
+
+.makeorder-summary-text-link:focus{
+    outline: 0 !important;
+    color: #000 !important;
+}
+
+.makeorder-summary-text-link:hover{
+    outline: 0 !important;
+    color: #0077c8 !important;
+    transition-property: color;
+    -webkit-transition: color .3s ease;
+}
+
+.profile-address-label{
+    color: #000;
+    font-size: 16px;
+    font-family: 'SamsungOne 600','Open Sans',Helvetica,Arial,sans-serif;
+    line-height: 32px;
+    margin-bottom: 0;
+    display: block;
+    max-width: 100%;
+    font-weight: 700
+}
+
+.profile-user-data{
+    padding-top: 40px;
+}
+
+.profile-user-data-header-title{
+    font-size: 20px;
+    line-height: 1em;
+    letter-spacing: -.2px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.profile-user-data-date{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.field-edituserprofile-date3{
+    width: 30%;
+}
+.field-edituserprofile-date2{
+    width: 30%;
+}
+.field-edituserprofile-date{
+    width: 30%;
+}
+
+.passwordchangelink{
+    color: #000;
+    font-family: 'SamsungOne 800','Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.passwordblockhidden{
+    display: none;
+}
+
+.indeximages{
+     -webkit-transition: background-size 1s;
+	-moz-transition: background-size 1s;
+	-o-transition: background-size 1s;
+	-ms-transition: background-size 1s;
+	transition: background-size 1s;
+	background-position: center center;
+}
+
+.indeximages:hover{
+    background-size: 115% 115%;
+}
+
+.account-favourites-container{
+    padding: 0;
+}
+
+.favourites-container{
+    min-height: 704px;
+    font-family: 'SamsungOne 600','Open Sans',Helvetica,Arial,sans-serif;
+}
+
+.favourites-list{
+    padding: 0;
+}
+
+.favourites-list-section{
+    margin: 0;
+    padding: 16px 0;
+}
+
+.favourites-list-header{
+    word-wrap: break-word;
+}
+
+.favourites-header{
+    line-height: 56px;
+    font-family: "SamsungOne 200",'Open Sans',Helvetica,Arial,sans-serif;
+    font-size: 44px;
+    letter-spacing: -1px;
+    padding: 0;
+    font-weight: 200;
+}
+
+.favourites-list-action{
+    padding: 0;
+    line-height: 48px;
+}
+
+.favourites-list-remove{
+    letter-spacing: 1px;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #666;
+    -webkit-transition-property: color;
+    transition-property: color;
+    transition: color .3s ease;
+    -webkit-transition: color .3s ease;
+}
+
+.favourites-list-remove:hover{
+    cursor: pointer;
+    color: #0077c8;
+}
+
+.favourites-list-add-in-cart-button{
+    float: right;
+    padding: 0 32px;
+    background-color: #fff;
+    transition: background-color .3s ease,border-color .3s ease;
+    -webkit-transition: background-color .3s ease,border-color .3s ease;
+    line-height: 44px;
+    height: 44px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    border: 1px solid #000;
+    border-radius: 24px;
+    color: #000;
+    text-transform: uppercase;
+    font-family: 'SamsungOne 800','Open Sans',Helvetica,Arial,sans-serif;
+    font-weight: 800;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+}
+
+.favourites-list-add-in-cart-button:hover{
+    background-color: #0077c8;
+    border-color: #0077c8;
+    color: white;
+}
+
+.favourites-remove-item{
+    line-height: 24px;
+    font-family: "SamsungOne 600", 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+    text-decoration: underline;
+    letter-spacing: 1px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.favourites-add-inform-item{
+    padding-top: 10px;
+    line-height: 24px;
+    font-family: "SamsungOne 800", 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #000;
+    text-decoration: underline;
+    letter-spacing: 1px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.favourites-list-button-adaptive{
+    float:right;
+    padding:0;
+}
+
+@media (max-width: 507px){
+    .favourites-list-button-adaptive{
+        float: left;
+    }
+}
+
+@media (min-width: 1023px){
+    .account-favourites-container{
+        max-width: 930px;
+        margin: 0 auto;
+    }
+    
+    .favourites-container{
+        width: 770px;
+        margin: 30px auto 0;
+    }
+    
+    .favourites-list-add-in-cart-button{
+        width: auto;
+    }
+}
+
+@media (min-width: 1170px){
+    .account-favourites-container{
+        width: 1170px;
+    }
+}
+
+@media (min-width: 1024px){
+    .account-favourites-container{
+        width: 1024px;
+    }
+}
+
+@media (min-width: 640px){
+    .account-favourites-container{
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+

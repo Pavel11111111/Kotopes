@@ -139,3 +139,84 @@ $(function(){
 		return false;
 	})
 })
+
+$( document ).ready(function() {
+    var cookievalue = get_cookie("openmodalinfo");
+    if(cookievalue == null){
+        $('#InformationBox').modal();
+        $('#InformationBox').attr('style', 'display:block;');
+        $('#InformationBox').addClass('in');
+        set_cookie('openmodalinfo', new Date().getTime());
+    } else if (new Date().getTime() -  Number(cookievalue) > 18500000000){
+        $('#InformationBox').modal();
+        $('#InformationBox').attr('style', 'display:block;');
+        $('#InformationBox').addClass('in');
+        set_cookie('openmodalinfo', new Date().getTime());
+    }
+});
+
+$(document).on('click', '.opennewsmodalasadmin', function () {
+      $('#InformationBox').modal();
+      $('#InformationBox').attr('style', 'display:block;');
+      $('#InformationBox').addClass('in');
+})
+
+$(document).on('click', '#sendinfomationbyproduct', function () {
+    $('#addproductmodal').attr('style', 'display:none;');
+    $("#InformationBox").append("<div class='popup'>"+ 
+						 "<div class='popup_bg'></div>"+ 
+						 "<img src='/images/kot.gif' class='popup_img' />"+ 
+						 "</div>"); 
+	$(".popup").fadeIn(1); 
+    $.post("site/informationbyproduct", { text: $('#sendinformationbyproducttext').val()})
+	.done(function(data) {
+	    $('#addproductmodalready').attr('style', 'display:block;');
+	    $(".popup").fadeOut(1);
+		setTimeout(function() {
+			$(".popup").remove();
+		}, 1);
+    });
+})
+
+$('#InformationBox').on('hidden.bs.modal', function () {
+  $('body').css('overflow-y', 'auto');
+  $('html').css('overflow-y', 'auto');
+})
+
+$('#InformationBox').on('show.bs.modal', function () {
+  $('body').css('overflow-y', 'hidden');
+  $('html').css('overflow-y', 'hidden');
+  $('#InformationBox').addClass('procrutka');
+})
+
+function get_cookie ( cookie_name )
+{
+  var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+ 
+  if ( results )
+    return ( unescape ( results[2] ) );
+  else
+    return null;
+}
+
+function set_cookie ( name, value, exp_y, exp_m, exp_d, path, domain, secure )
+{
+  var cookie_string = name + "=" + escape ( value );
+ 
+  if ( exp_y )
+  {
+    var expires = new Date ( exp_y, exp_m, exp_d );
+    cookie_string += "; expires=" + expires.toGMTString();
+  }
+ 
+  if ( path )
+        cookie_string += "; path=" + escape ( path );
+ 
+  if ( domain )
+        cookie_string += "; domain=" + escape ( domain );
+  
+  if ( secure )
+        cookie_string += "; secure";
+  
+  document.cookie = cookie_string;
+}

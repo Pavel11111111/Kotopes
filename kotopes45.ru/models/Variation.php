@@ -20,6 +20,9 @@ class Variation extends \yii\db\ActiveRecord{
         return self::find()->where(['id' => $variationid])->one();
     }
 
+    public static function getAllVariations(){
+        return self::find()->orderBy(['id' => SORT_DESC])->all();
+    }
     public function getProduct()
     {
         return $this->hasOne(Products::className(), ['id' => 'productid']);

@@ -214,14 +214,31 @@ $(document).ready( function(e){
  $('.addvariation').on('click', function () {
 	var i = $('.block').length;
 	
-	$(".blocks").append('<div class="block ' + i + '" style = "margin-top: 20px; border: 1px solid darkred">                 <p class = "text-center banuser">Фотография</p>                 <input type="file" name="Product[' + i + '][image]" class="uploadButton filevariation">                 <p class = "text-center banuser">Разновидность</p>                 <input type="text" name="Product[' + i + '][name]" class="form-control text-left namevariation">                 <p class = "text-center banuser">Цена</p>                 <input type="text" name="Product[' + i + '][price]" class="form-control text-left pricevariation">                 <p class = "text-center banuser">Скидка</p>                 <input type="text" name="Product[' + i + '][sale]" class="form-control text-left salevariation">                 <p class = "text-center banuser">Количество на складе</p>                 <input type="text" name="Product[' + i + '][count]" class="form-control text-left countvariation"> <button type="button" class="knopkafeedback deletevariation" id = "-1" style="margin-top:45px;">Удалить</button><br><br>             </div>');
+	$(".blocks").append('<div class="block ' + i + '" style = "margin-top: 20px; border: 1px solid darkred">                 <p class = "text-center banuser">Фотография</p>                 <input type="file" name="Product[' + i + '][image]" class="uploadButton filevariation">                 <p class = "text-center banuser">Разновидность</p>                 <input type="text" name="Product[' + i + '][name]" class="form-control text-left namevariation">                 <p class = "text-center banuser">Цена</p>                 <input type="text" name="Product[' + i + '][price]" class="form-control text-left pricevariation">                 <p class = "text-center banuser">Скидка</p>                 <input type="text" name="Product[' + i + '][sale]" class="form-control text-left salevariation">                 <p class = "text-center banuser">Количество на складе</p>                 <input type="text" name="Product[' + i + '][count]" class="form-control text-left countvariation"><p class = "text-center banuser">Место в списке</p> <input type="text" name="Product[' + i + '][place]" class="form-control text-left placevariation"><button type="button" class="knopkafeedback deletevariation" id = "-1" style="margin-top:45px;">Удалить</button><br><br>             </div>');
 });
 
-$(document).on('click', '.deletevariation', function(){ 
+ $('.addnewstextlist').on('click', function () {
 	var i = $('.block').length;
+	
+	$(".blocks").append('<div class="block ' + i + '" style = "margin-top: 20px; border: 1px solid darkred"><p class = "text-center banuser">Текст перед названием</p><input type="text" name="Informationtextlist[' + i + '][text]" class="form-control text-left namevariation" style = "margin-bottom:44px;"><p class = "text-center banuser">Название товара для новости</p><input type="text" name="Informationtextlist[' + i + '][link]" class="form-control text-left namevariation" style = "margin-bottom:44px;"><input type ="hidden" name = "Informationtextlist[' + i + '][id]" value = "0"></div>');
+});
+
+$('.deletenewstext').on('click', function () {
+    $deleteid = $(this).attr('id');
+	$(this).parent().remove();
+	$.ajax({
+        type: 'post',
+        url: 'http://kotopes45.ru/admin/deletenewsproducts',
+        data: {
+			productid: $deleteid
+		}
+    })
+});
+$(document).on('click', '.deletevariation', function(){ 
 	var id = $(this).attr('id');
+	$this = $(this);
 	if(id == -1){
-		$(".block." + (i - 1)).remove();
+		$this.parent().remove();
 	}else{
 		$.ajax({
             type: 'post',
@@ -231,7 +248,7 @@ $(document).on('click', '.deletevariation', function(){
 			}
         })
 		.done(function(data) {
-			$(".block." + (i - 1)).remove();
+			$this.parent().remove();
 		})
 	}
 });

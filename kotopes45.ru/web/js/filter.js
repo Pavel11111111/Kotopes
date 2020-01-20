@@ -70,6 +70,9 @@ $(document).ready(function() {
 				    item.forEach(function(item2, i, arr) {
 					    $("div[data-text='" + decodeURIComponent($_GET('producttype')) + decodeURIComponent($_GET('typeanimals'))+ "']").find('p:contains('+  decodeURIComponent(item2) +')').siblings("img").attr('src', "/images/galka.png");
 					    $("div[data-text='" + decodeURIComponent($_GET('producttype')) + decodeURIComponent($_GET('typeanimals'))+ "']").find('p:contains('+  decodeURIComponent(item2) +')').parent().attr('data-id', '1');
+					    $("div[data-text='" + decodeURIComponent($_GET('producttype')) + decodeURIComponent($_GET('typeanimals'))+ "']").find('p:contains('+  decodeURIComponent(item2) +')').parent().parent().attr('style', 'display:block;');
+					    $("div[data-text='" + decodeURIComponent($_GET('producttype')) + decodeURIComponent($_GET('typeanimals'))+ "']").find('p:contains('+  decodeURIComponent(item2) +')').parent().parent().siblings('.turn').attr('data-id', '0');
+					    $("div[data-text='" + decodeURIComponent($_GET('producttype')) + decodeURIComponent($_GET('typeanimals'))+ "']").find('p:contains('+  decodeURIComponent(item2) +')').parent().parent().siblings('.turn').children('.filterimgc').attr('src', '/images/iconminus.png');
 				    });
 				});
 			}
@@ -214,6 +217,9 @@ $('.allproduct').on('click', function () {
 	$("div.allproductclean").empty();
 	$("div.typeproductclean").empty();
 	$('.resetfilters').attr('style', 'display: none;');
+	$('.otherfilterslist').attr('style', 'display:none');
+	$('.otherlistturn').attr('data-id', '1');
+	$('.otherfilterimgc').attr('src', '/images/iconplus.png');
 	return false;
 })
 $('.allproductclean').on('click', function () {
@@ -232,6 +238,9 @@ $('.allproductclean').on('click', function () {
 	$('.level3').attr('style', 'display: none;');
 	$("div.typeproductclean").empty();
 	$('.resetfilters').attr('style', 'display: none;');
+	$('.otherfilterslist').attr('style', 'display:none');
+	$('.otherlistturn').attr('data-id', '1');
+	$('.otherfilterimgc').attr('src', '/images/iconplus.png');
 	return false;
 })
 $('.typeproductclean').on('click', function () {
@@ -276,8 +285,8 @@ function lazyloadproduct(){
         .done(function(data) { 
             //$this.find('.loading-bar').html($initmessage); 
             // Если возвращенные данные пусты то сообщаем об этом 
-            if(data == "") { 
-                $('.loading-bar').html('Товары закончились! Если вы не нашли нужного вам, вы можете его <a href = "http://kotopes45.ru/OrderProduct">заказать</a>.'); 
+            if(data == "") {
+                $('.loading-bar').html('Товары закончились! Если Вы не нашли нужного, можете его <a href = "http://kotopes45.ru/OrderProduct">заказать</a>.'); 
                 busy = true;
             } 
             else { 
@@ -309,12 +318,14 @@ if(document.body.clientWidth >= 1200){
     } 
 }
 busy = false;
-$(window).scroll(function() {
-    if('/Catalog' == window.location.pathname){
-        if($(window).scrollTop() + $(window).height() > $('.wrap').height() && !busy) {
-            lazyloadproduct();
-        } 
-    }
+$(document).ready(function(){ 
+    $(document).scroll(function() {
+        if('/Catalog' == window.location.pathname){
+            if($(window).scrollTop() + $(window).height() > $('.wrap').height() && !busy) {
+                lazyloadproduct();
+            } 
+        }
+    });
 });
 $( document ).ready(function() {
     if('/Catalog' == window.location.pathname){
@@ -325,4 +336,13 @@ $( document ).ready(function() {
         }
         lazyloadproduct();
     }
+});
+
+$(".search-delete-icon").click(function() {
+	$(".searchinput").val('');
+	var url = removeURLParameter(document.location.href, 'search');
+	history.replaceState(null, null, url);
+	settings.offset = 0;
+	$(".products").empty();
+	lazyloadproduct();
 });

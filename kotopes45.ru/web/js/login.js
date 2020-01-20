@@ -1,12 +1,11 @@
 $('#login-form').on('beforeSubmit', function () {
 	$("#ModalBox1").append("<div class='popup'>"+ 
 						 "<div class='popup_bg'></div>"+ 
-						 "<img src='/images/loading3.gif' class='popup_img' />"+ 
+						 "<img src='/images/kot.gif' class='popup_img' />"+ 
 						 "</div>"); 
 	$(".popup").fadeIn(1); 
     var $yiiform = $(this);
 	var data = $yiiform.serializeArray();
-    var mylocation = window.location.href;
 	data.push({
 		"name": "LoginForm[url]",
 		"value": window.location.href

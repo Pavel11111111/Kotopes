@@ -12,13 +12,18 @@ class Products extends \yii\db\ActiveRecord{
     }
     public static function getInfo()
     {
-        return self::find()->orderBy(['id' => SORT_ASC])->all();
+        return self::find()->orderBy(['id' => SORT_DESC])->all();
     }
     
     public static function getInfoBySearchText($searchtext, $products)
     {
+        $productnames = explode(" ", $searchtext);
+        $search = "";
+        foreach ($productnames as $productname){
+            $search .= '%' . $productname . '%';
+        }
         return $products
-            ->andWhere(['like', 'p.name', '%' . $searchtext . '%', false]);
+            ->andWhere(['like', 'p.name', $search, false]);
     }
     public static function getInfo2()
     {
@@ -30,7 +35,7 @@ class Products extends \yii\db\ActiveRecord{
     {
         return $products
             ->innerJoin(['v1' => 'variation'], ' p.id = v1.productid')
-            ->leftJoin(['v2' => 'variation'], 'p.id = v2.productid AND v1.id > v2.id')
+            ->leftJoin(['v2' => 'variation'], 'p.id = v2.productid AND v1.place > v2.place')
             ->andWhere(['v2.id' => null])
             ->orderBy(['v1.price' => SORT_DESC]);
     }
@@ -39,8 +44,8 @@ class Products extends \yii\db\ActiveRecord{
     {
         return $products
             ->innerJoin(['v1' => 'variation'], ' p.id = v1.productid')
-            ->leftJoin(['v2' => 'variation'], 'p.id = v2.productid AND v1.id > v2.id')
-            ->where(['v2.id' => null])
+            ->leftJoin(['v2' => 'variation'], 'p.id = v2.productid AND v1.place > v2.place')
+            ->andWhere(['v2.id' => null])
             ->orderBy(['v1.price' => SORT_ASC]);
     }
 
@@ -124,6 +129,6 @@ class Products extends \yii\db\ActiveRecord{
 
     public function getVariation()
     {
-        return self::hasMany(Variation::className(), ['productid' => 'id']);
+        return self::hasMany(Variation::className(), ['productid' => 'id'])->orderBy(['place' => SORT_ASC]);
     }
 }

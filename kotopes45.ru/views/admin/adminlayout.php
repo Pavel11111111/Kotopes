@@ -41,8 +41,9 @@ AppAsset::register($this);
             'options' => ['class' => 'navbar-nav  navbar-left'],
             'items' => [
                 ['label' => 'БАННЕРЫ', 'url' => Yii::$app->urlManager->createUrl(['admin/banners'])],
-                ['label' => 'ФОТКИ ЗВЕРЕЙ', 'url' => ['/admin/animals']],
+                ['label' => 'ФОТО ЗВЕРЕЙ', 'url' => ['/admin/animals']],
                 ['label' => 'ПОЛЬЗОВАТЕЛИ', 'url' => ['/admin/users']],
+                ['label' => 'НОВОСТИ', 'url' => ['/admin/news']],
                 '<li class="hizo1">'
                 . Html::a(Html::img('/images/kotopes.png'), ['/admin/adminpage'])
                 .'</li>'
@@ -61,6 +62,9 @@ AppAsset::register($this);
                 .'</li>'
                 . '<li class="htext1 ">'
                 . Html::a('ФИЛЬТРЫ ПРОДУКТОВ', ['admin/filters'], ['class' => 'check'])
+                .'</li>'
+                . '<li class="htext1 ">'
+                . Html::a('ВРЕМЯ', ['admin/times'], ['class' => 'check'])
                 .'</li>'
                 . '<li class="htext1 htext2">'
                 .'<p class="htext1 hid dropdown-menu-hidden-text">Здравствуйте ' . Yii::$app->user->identity->name . '</p>'

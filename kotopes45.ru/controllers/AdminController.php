@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Informationdateslist;
+use app\models\Informationtextlist;
+use app\models\Delivery_date;
 use app\models\InformUser;
 use Imagine\Image\Box;
 use app\models\Animals;
@@ -69,6 +72,18 @@ class AdminController extends Controller
         ];
     }
 
+    public function actionRestoreproduct()
+    {
+        $counts = Yii::$app->request->get('count');
+        foreach(Yii::$app->request->get('product') as $key => $product){
+            $variation = Variation::findOne($product);
+            $variation->count += $counts[$key];
+            $variation->save();
+        }
+        echo '<pre>';
+        echo var_dump('Всё зер гуд!');
+        die('</pre>');
+    }
     public function actionNewvariaton()
     {
         $products = new Products();
@@ -113,6 +128,13 @@ class AdminController extends Controller
                         $model->count = (int)$variation['count'];
                     }
                     $model->save();
+                    if($variation['place'] != null){
+                        $model->place = $variation['place'];
+                        $model->save();
+                    }else{
+                        $model->place = $model->id;
+                        $model->save();
+                    }
                 }
             }
             $url = Url::to(['admin/filtersproduct', 'productname' => Yii::$app->request->get('productname')]);
@@ -406,6 +428,8 @@ class AdminController extends Controller
     {
         $banner = new NewHots();
         $banner->load(Yii::$app->request->post());
+        $banner->gltextcolor = Yii::$app->request->post()["NewHots"]['gltextcolor'];
+        $banner->textcolor = Yii::$app->request->post()["NewHots"]['textcolor'];
         $banner->img = UploadedFile::getInstance($banner, 'img');
         $randomName = Yii::$app->security->generateRandomString();
         $randomName = $banner->upload($randomName);
@@ -413,7 +437,7 @@ class AdminController extends Controller
         $dir = 'images/' . $fileName;
         $banner->img = $fileName;
         $photo = Image::getImagine()->open($dir);
-        $photo->thumbnail(new Box(1600, 555))->save($dir, ['quality' => 100]);
+        $photo->resize(new Box(1600, 555))->save($dir, ['quality' => 100]);
         $banner->setRecord($fileName);
         return $this->redirect('http://kotopes45.ru/admin/banners');
     }
@@ -421,7 +445,8 @@ class AdminController extends Controller
     public function actionChangebanner()
     {
         $newbanner = new NewHots();
-        $banner = Hots::findById(Yii::$app->request->post()["NewHots"]["id"]);
+        $banner = Hots::findById(Yii::$app->request->post()["NewHots"]["oldid"]);
+        $banner->id = Yii::$app->request->post()["NewHots"]["id"];
         $banner->gltext = Yii::$app->request->post()["NewHots"]["gltext"];
         $banner->gltextcolor = Yii::$app->request->post()["NewHots"]["gltextcolor"];
         $banner->text = Yii::$app->request->post()["NewHots"]["text"];
@@ -438,7 +463,7 @@ class AdminController extends Controller
             $dir = 'images/' . $fileName;
             $banner->img = $fileName;
             $photo = Image::getImagine()->open($dir);
-            $photo->thumbnail(new Box(1600, 555))->save($dir, ['quality' => 100]);
+            $photo->resize(new Box(1600, 555))->save($dir, ['quality' => 100]);
         }
         $banner->save();
         return $this->redirect('http://kotopes45.ru/admin/banners');
@@ -674,11 +699,12 @@ class AdminController extends Controller
                 if($variation['name'] != null) {
                     if($variation['hidden'] != null) {
                         $model = Variation::getInfo2($variation['hidden']);
-                        if($_FILES['Product']['tmp_name'][$key]["image"] != null) {
+                        if($_FILES['Product']['tmp_name'][$key]["image"] != null || $variation['deleteimage'] == 'delete') {
                             if($model->img != null){
                                 if(file_exists ('images/products/' . $model->img)){
                                     unlink('images/products/' . $model->img);
                                 }
+                                $model->img = null;
                             }
                         }
                     }
@@ -727,6 +753,12 @@ class AdminController extends Controller
                         }*/
                         $model->count = (int)$variation['count'];
                     }
+                    if($variation['place'] != null){
+                        $model->place = (int)$variation['place'];
+                    }else{
+                        $model->save();
+                        $model->place = $model->id;
+                    }
                     $model->save();
                 }
             }
@@ -740,7 +772,94 @@ class AdminController extends Controller
 
     public function actionDeletevariation()
     {
-        Variation::getInfo2(Yii::$app->request->post('variationid'))->delete();
+        $variation = Variation::getInfo2(Yii::$app->request->post('variationid'));
+        if($variation->img != null){
+            if(file_exists ('images/products/' . $variation->img)){
+                unlink('images/products/' . $variation->img);
+            }
+        }
+        $variation->delete();
     }
 
+    public function actionTimes()
+    {
+        return $this->render('times', [
+            'dates' => Delivery_date::GetInfo()
+        ]);
+    }
+    
+    public function actionTimescontrol()
+    {
+        $time = Delivery_date::findOne(Yii::$app->request->get('timeid'));
+        if($time != null){
+            $time->status = Yii::$app->request->get('timestatus');
+            $time->save();
+            return "OK";
+        }else{
+            return "ОШИБКА!!!!!!!!";
+        }
+    }
+    
+    public function actionNews()
+    {
+        if(yii::$app->request->post('Informationdateslist')){
+            $informationdate = new Informationdateslist();
+            $informationdate->attributes = yii::$app->request->post('Informationdateslist');
+            $informationdate->save();
+            return $this->redirect(Url::to(['admin/newstext', 'dateid' => $informationdate->id]));
+        }
+        return $this->render('news', [
+            'informationdate' => new Informationdateslist(),
+            'informationdatelist' => Informationdateslist::getInfo(),
+            'news' => Informationdateslist::getInfo()
+        ]);
+    }
+    
+    public function actionNewstext($dateid)
+    {
+        if ($text_list = Yii::$app->request->post('Informationtextlist')) {
+            foreach ($text_list as $key => $text) {
+                if($text['id'] == 0){
+                    $model = new Informationtextlist;
+                    if($text['text'] != ""){
+                        $model->text = $text['text'];
+                    }
+                    $model->link = $text['link'];
+                    $model->informationdateslist_id = $dateid;
+                    $model->save();
+                }else{
+                    $model = Informationtextlist::findOne($text['id']);
+                    $model->text = $text['text'];
+                    $model->link = $text['link'];
+                    $model->save();
+                }
+            }
+            return $this->redirect(Url::to(['admin/news']));
+        }
+        $date = Informationdateslist::findOne($dateid);
+        return $this->render('newstext', [
+            'date' => $date
+        ]);
+    }
+    
+    public function actionChangenews()
+    {
+        $model = Informationdateslist::findOne(yii::$app->request->post('Informationdateslist')["id"]);
+        $model->date = yii::$app->request->post('Informationdateslist')["date"];
+        $model->save();
+        Yii::$app->session->setFlash('success', 'Новость отредактирована!');
+        return $this->redirect(Url::to(['admin/news']));
+    }
+    
+    public function actionDeletenews()
+    {
+        Informationdateslist::findOne(yii::$app->request->post('newsid'))->delete();
+        Yii::$app->session->setFlash('success', 'Новость удалена!');
+        return $this->redirect(Url::to(['admin/news']));
+    }
+    
+    public function actionDeletenewsproducts()
+    {
+        Informationtextlist::findOne(yii::$app->request->post('productid'))->delete();
+    }
 }

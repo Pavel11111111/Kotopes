@@ -18,13 +18,13 @@ $this->title = 'Админка';
                 'labelOptions' => ['class' => 'col-lg-1 control-label'],
             ],
         ]);?>
-        <p class = "text-center">Большой текст</p>
+        <p class = "text-center">Верхний текст</p>
         <?= $form->field($newbanner, 'gltext')->textInput(['class'=>'form-control text-left' ]) ?>
-        <p class = "text-center">Цвет большого текста</p>
+        <p class = "text-center">Цвет верхнего текста</p>
         <?= $form->field($newbanner, 'gltextcolor')->input('color', ['class'=>'form-control text-left']) ?>
-        <p class = "text-center">Маленький текст</p>
+        <p class = "text-center">Нижний текст</p>
         <?= $form->field($newbanner, 'text')->textInput(['class'=>'form-control text-left' ]) ?>
-        <p class = "text-center">Цвет маленького текста</p>
+        <p class = "text-center">Цвет нижнего текста</p>
         <?= $form->field($newbanner, 'textcolor')->input('color', ['class'=>'form-control text-left']) ?>
         <p class = "text-center">Изображение</p>
         <?= $form->field($newbanner, 'img')->fileInput(['class'=>'uploadButton']);?>
@@ -48,15 +48,16 @@ $this->title = 'Админка';
                     'labelOptions' => ['class' => 'col-lg-1 control-label'],
                 ],
             ]);?>
+            <?= $form->field($newbanner, 'oldid')->hiddenInput(['class'=>'form-control text-left' , 'value' => $banner->id]) ?>
             <p class = "text-center">Порядковый номер(Не изменять!!!!!)</p>
             <?= $form->field($newbanner, 'id')->textInput(['class'=>'form-control text-left' , 'value' => $banner->id]) ?>
-            <p class = "text-center">Большой текст</p>
+            <p class = "text-center">Верхний текст</p>
             <?= $form->field($newbanner, 'gltext')->textInput(['class'=>'form-control text-left' , 'value' => $banner->gltext]) ?>
-            <p class = "text-center">Цвет большого текста</p>
+            <p class = "text-center">Цвет верхнего текста</p>
             <?= $form->field($newbanner, 'gltextcolor')->input('color', ['class'=>'form-control text-left', 'value' => $banner->gltextcolor]) ?>
-            <p class = "text-center">Маленький текст</p>
+            <p class = "text-center">Нижний текст</p>
             <?= $form->field($newbanner, 'text')->textInput(['class'=>'form-control text-left' , 'value' => $banner->text]) ?>
-            <p class = "text-center">Цвет маленького текста</p>
+            <p class = "text-center">Цвет нижнего текста</p>
             <?= $form->field($newbanner, 'textcolor')->input('color', ['class'=>'form-control text-left', 'value' => $banner->textcolor]) ?>
             <p class = "text-center">Изображение</p>
             <p class = "text-center"><img style = "max-width: 90%;" src = "/images/<?= $banner->img ?>"/></p>

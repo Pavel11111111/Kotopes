@@ -14,7 +14,7 @@ $this->title = 'Админка';
     <div style = "text-align: center">
     <table class = "table-wrap">
         <thead>
-            <tr><th>Название товара</th><th>Описание</th><th>Сохранить</th><th>Удалить</th></ht><th>Вариации</th><th>Фильтры</th</tr>
+            <tr><th>Название товара</th><th>Описание</th><th>Сохранить</th><th>Удалить</th></ht><th>Вариации</th><th>Фильтры</th></tr>
         </thead>
         <?php
         foreach ($products as $product){
@@ -24,8 +24,8 @@ $this->title = 'Админка';
                 <td data-label="Описание" style = "min-width: 329px;"><textarea  style="resize: vertical;height: 200px;"  name="Product[<?= $product->id ?>][description]" class="form-control text-left namevariation" style = "resize: vertical;width: 100%;"><?= $product->description ?></textarea></td>
                 <td data-label="Сохранить"><button class = "changeproduct" type="submit">СОХРАНИТЬ ИЗМЕНЕНИЯ</button></td>
                 <td data-label="Удалить"><button type="button" class = "deleteproduct" id = "<?= $product->id ?>">УДАЛИТЬ ТОВАР</button></td>
-                <td data-label="Вариации"><a href = "<?= Url::to(['admin/changevariation',  'productid' => $product->id]) ?>">Изменить вариации</a></td>
-                <td data-label="Фильтры"><a href = "<?= Url::to(['admin/changefilters',  'productid' => $product->id]) ?>">Изменить фильтры</a></td>
+                <td data-label="Вариации"><a class = "backtotable" href = "<?= Url::to(['admin/changevariation',  'productid' => $product->id]) ?>">Изменить вариации</a></td>
+                <td data-label="Фильтры"><a class = "backtotable" href = "<?= Url::to(['admin/changefilters',  'productid' => $product->id]) ?>">Изменить фильтры</a></td>
             </tr>
         </form>
             <?php

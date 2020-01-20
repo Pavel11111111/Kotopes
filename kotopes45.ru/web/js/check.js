@@ -1,4 +1,4 @@
-$('.check').on('click', function () {
+/*$('.check').on('click', function () {
 	if(document.getElementById("user").value == true){
 		$('#ModalBox5').modal('show');
 		return false;
@@ -7,4 +7,4 @@ $('.check').on('click', function () {
 		$('#ModalBox6').modal('show');
 		return false;
 	}
-})
+})*/

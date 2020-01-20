@@ -72,18 +72,18 @@ $this->title = 'Котопёс КУРГАН | Официальный сайт';
                 <p>У нас вы можете выбрать товар для любого питомца</p>
             </div>
             <div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12  imgi">
-                <div class = "col-lg-3 col-md-3 col-sm-10 col-xs-12 imgi1">
-                    <a href="http://kotopes45.ru/Catalog?typeanimals=%D0%A1%D0%BE%D0%B1%D0%B0%D0%BA%D0%B8">
+                <div class = "col-lg-3 col-md-3 col-sm-10 col-xs-12 imgi1 indeximages" style = "padding: 0;">
+                    <a class = "nohovedecoration" href="http://kotopes45.ru/Catalog?typeanimals=%D0%A1%D0%BE%D0%B1%D0%B0%D0%BA%D0%B8">
                         <p class = "imgitext1">Собаки</p>
                     </a>
                 </div>
-                <div class = "col-lg-3 col-md-12 col-sm-10 col-xs-12 imgi2">
-                    <a href="http://kotopes45.ru/Catalog?typeanimals=%D0%9A%D0%BE%D1%88%D0%BA%D0%B8">
+                <div class = "col-lg-3 col-md-12 col-sm-10 col-xs-12 imgi2 indeximages" style = "padding: 0;">
+                    <a class = "nohovedecoration" href="http://kotopes45.ru/Catalog?typeanimals=%D0%9A%D0%BE%D1%88%D0%BA%D0%B8">
                         <p class = "imgitext1">Кошки</p>
                     </a>
                 </div>
-                <div class = "col-lg-3 col-md-12 col-sm-10 col-xs-12 imgi3">
-                    <a href="http://kotopes45.ru/Catalog?typeanimals=%D0%93%D1%80%D1%8B%D0%B7%D1%83%D0%BD%D1%8B">
+                <div class = "col-lg-3 col-md-12 col-sm-10 col-xs-12 imgi3 indeximages" style = "padding: 0;">
+                    <a class = "nohovedecoration" href="http://kotopes45.ru/Catalog?typeanimals=%D0%93%D1%80%D1%8B%D0%B7%D1%83%D0%BD%D1%8B">
                         <p class = "imgitext1">Грызуны</p>
                     </a>
                 </div>
@@ -100,8 +100,8 @@ $this->title = 'Котопёс КУРГАН | Официальный сайт';
                         <div class = "owl-carousel owl-theme">
                             <?php for ($s = 0; $s < count($animals); $s+=2) { ?>
                                 <div style = "display: inline-block;width: 100%;height: auto;">
-                                    <div class = "carouseloneitem">
-                                        <div class="imgi11 bordercarousel slide-item owl-lazy" data-src="../images/animals/<?php echo $animals[$s]->img ?>" style = "max-height:300px;background-repeat: no-repeat; background-size: cover; background-position: center center">
+                                    <div class = "carouseloneitem" style = "background-image: url('../images/kot.gif');background-size: 72% 72%; background-repeat: no-repeat; background-position: center center;">
+                                        <div class="imgi11 bordercarousel slide-item owl-lazy" data-src="../images/animals/<?php echo $animals[$s]->img ?>" style = "max-height:300px;background-repeat: no-repeat; background-size: cover; background-position: center center;">
                                             <div class="backgroundbox">
                                                 <p class = "animalstext"><?php echo $animals[$s]->name ?></p>
                                                 <p class = "likes animalstext animalsmarg" data-id = "<?php echo $animals[$s]->id?>"><img class = "animalsimg" src="/images/heart.png"/> <?php echo $animals[$s]->countlikes ?></p>
@@ -109,7 +109,7 @@ $this->title = 'Котопёс КУРГАН | Официальный сайт';
                                             </div>
                                         </div>
                                     </div>
-                                    <div  class = "carouseloneitem" style ="margin-top: 30px;">
+                                    <div  class = "carouseloneitem" style ="margin-top: 30px;background-image: url('../images/kot.gif');background-size: 72% 72%; background-repeat: no-repeat; background-position: center center;">
                                         <div class="imgi11 bordercarousel slide-item owl-lazy" data-src="../images/animals/<?php echo $animals[$s+1]->img ?>" style = "max-height:300px;background-repeat: no-repeat; background-size: cover; background-position: center center">
                                             <div class="backgroundbox">
                                                 <p class = "animalstext"><?php echo $animals[$s+1]->name ?></p>

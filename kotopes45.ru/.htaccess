@@ -19,3 +19,5 @@
     </FilesMatch>
     </IfModule>
     
+    php_value date.timezone "Asia/Yekaterinburg"
+    
